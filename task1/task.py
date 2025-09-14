@@ -11,5 +11,5 @@ def reader(path):
 
     return result
 
-matrix = reader("analiz1.csv")
+matrix = reader("test1.csv")
 print(matrix)

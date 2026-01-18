@@ -1,7 +1,7 @@
 import pandas as pd
 from typing import Tuple, List
 
-def classes(s: str) -> Tuple[
+def main(s: str) -> Tuple[
         List[List[bool]],
         List[List[bool]],
         List[List[bool]],
@@ -73,4 +73,4 @@ def classes(s: str) -> Tuple[
 
     return [r1, r2, r3, r4, r5]
 
-classes("./ult.csv")
+main("./ult.csv")

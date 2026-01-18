@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from typing import Tuple
 
-def difficulty(s: str, root: int) -> Tuple[float, float]:
+def main(s: str, root: int) -> Tuple[float, float]:
     df = pd.read_csv(s, header=None, sep=r'\s+')
     
     nodes = sorted(set(df[0].astype(int).tolist() + df[1].astype(int).tolist()))
@@ -42,4 +42,4 @@ def difficulty(s: str, root: int) -> Tuple[float, float]:
     
     return (H_total, h_normalized)
 
-difficulty("./ult.csv", 0)
+main("./ult.csv", 0)

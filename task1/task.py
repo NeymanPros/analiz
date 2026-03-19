@@ -73,4 +73,4 @@ def main(s: str) -> Tuple[
 
     return [r1, r2, r3, r4, r5]
 
-main("./ult.csv")
+#main("./ult.csv")

@@ -176,6 +176,3 @@ def main(ranking_a_str: str, ranking_b_str: str) -> str:
             result_parts.append("{" + ", ".join(map(str, sorted_cluster)) + "}")
     
     return "{" + ", ".join(result_parts) + "}"
-
-print("Согласованная кластерная ранжировка:")
-print(consensus2)

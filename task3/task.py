@@ -93,7 +93,7 @@ def find_contradiction_core(ranking_a_str: str, ranking_b_str: str) -> Set[Tuple
     return contradictions
 
 # Постройка согласованной ранжировки
-def build_consensus_ranking(ranking_a_str: str, ranking_b_str: str) -> str:
+def main(ranking_a_str: str, ranking_b_str: str) -> str:
     ranking_a = parse_ranking(ranking_a_str)
     ranking_b = parse_ranking(ranking_b_str)
     
@@ -177,40 +177,5 @@ def build_consensus_ranking(ranking_a_str: str, ranking_b_str: str) -> str:
     
     return "{" + ", ".join(result_parts) + "}"
 
-
-ranking_a = "{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}"
-ranking_b = "{3, 1, 2, 4, 6, 5, 7, 8, 9, 10}"
-
-print("Ранжировка A:", ranking_a)
-print("Ранжировка B:", ranking_b)
-print()
-
-# Находим ядро противоречий
-core = find_contradiction_core(ranking_a, ranking_b)
-print("Ядро противоречий:")
-print(sorted(core))
-print()
-
-# Строим согласованную ранжировку
-consensus = build_consensus_ranking(ranking_a, ranking_b)
-print("Согласованная кластерная ранжировка:")
-print(consensus)
-print()
-
-# Дополнительный пример с кластерами
-print("=" * 50)
-ranking_a2 = "{1, 2, 3, {4, 5}, {6, 7}, 8, 9}"
-ranking_b2 = "{{1, 3}, 2, 4, {5, 7}, 6, 8, 9}"
-
-print("Ранжировка A:", ranking_a2)
-print("Ранжировка B:", ranking_b2)
-print()
-
-core2 = find_contradiction_core(ranking_a2, ranking_b2)
-print("Ядро противоречий:")
-print(sorted(core2))
-print()
-
-consensus2 = build_consensus_ranking(ranking_a2, ranking_b2)
 print("Согласованная кластерная ранжировка:")
 print(consensus2)

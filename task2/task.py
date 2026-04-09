@@ -1,17 +1,14 @@
-import pandas as pd
 import numpy as np
 from typing import Tuple, List
 
-def main_task1(s: str) -> Tuple[
+def main_task1(s) -> Tuple[
         List[List[bool]],
         List[List[bool]],
         List[List[bool]],
         List[List[bool]],
         List[List[bool]]]:
 
-    df = pd.read_csv(s, sep=" ", header=None).astype(int)
-
-    max_val = max(df.iloc[:, 0].max(), df.iloc[:, 1].max())
+    max_val = max([sublist[-1] for sublist in s])
 
     r1 = [[False for _ in range(max_val + 1)] for _ in range(max_val + 1)]
     r2 = [[False for _ in range(max_val + 1)] for _ in range(max_val + 1)]
@@ -23,10 +20,10 @@ def main_task1(s: str) -> Tuple[
     children = {}  # parent -> list of children
     parents = {}   # child -> parent
 
-        # Заполнение r1, r2
-    for i in range(len(df)):
-        x = int(df.iloc[i, 0])
-        y = int(df.iloc[i, 1])
+    # Заполнение r1, r2
+    for i in range(len(s)):
+        x = int(s[i][0])
+        y = int(s[i][1])
 
         if x == y:
             raise Exception("Граф указывает сам на себя!")
@@ -74,13 +71,11 @@ def main_task1(s: str) -> Tuple[
 
     return [r1, r2, r3, r4, r5]
 
-def main(s: str, root: int) -> Tuple[float, float]:
-    df = pd.read_csv(s, header=None, sep=r'\s+')
-    
-    nodes = sorted(set(df[0].astype(int).tolist() + df[1].astype(int).tolist()))
+def main(nodes, root: int) -> Tuple[float, float]:
+    #nodes = sorted(set(s[0].astype(int).tolist() + s[1].astype(int).tolist()))
     n = len(nodes)
     
-    r1, r2, r3, r4, r5 = main_task1(s) # Используется функция из task01
+    r1, r2, r3, r4, r5 = main_task1(nodes) # Используется функция из task01
     
     l = np.zeros((5, n)) 
     
@@ -113,5 +108,3 @@ def main(s: str, root: int) -> Tuple[float, float]:
     h_normalized = H_total / H_ref
     
     return (H_total, h_normalized)
-
-#main("./ult.csv", 0)

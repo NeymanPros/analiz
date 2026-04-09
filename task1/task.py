@@ -1,16 +1,13 @@
-import pandas as pd
 from typing import Tuple, List
 
-def main(s: str) -> Tuple[
+def main(s) -> Tuple[
         List[List[bool]],
         List[List[bool]],
         List[List[bool]],
         List[List[bool]],
         List[List[bool]]]:
 
-    df = pd.read_csv(s, sep=" ", header=None).astype(int)
-
-    max_val = max(df.iloc[:, 0].max(), df.iloc[:, 1].max())
+    max_val = max([sublist[-1] for sublist in s])
 
     r1 = [[False for _ in range(max_val + 1)] for _ in range(max_val + 1)]
     r2 = [[False for _ in range(max_val + 1)] for _ in range(max_val + 1)]
@@ -22,10 +19,10 @@ def main(s: str) -> Tuple[
     children = {}  # parent -> list of children
     parents = {}   # child -> parent
 
-        # Заполнение r1, r2
-    for i in range(len(df)):
-        x = int(df.iloc[i, 0])
-        y = int(df.iloc[i, 1])
+    # Заполнение r1, r2
+    for i in range(len(s)):
+        x = int(s[i][0])
+        y = int(s[i][1])
 
         if x == y:
             raise Exception("Граф указывает сам на себя!")
@@ -72,5 +69,3 @@ def main(s: str) -> Tuple[
                         r5[node][sibling] = True
 
     return [r1, r2, r3, r4, r5]
-
-#main("./ult.csv")
